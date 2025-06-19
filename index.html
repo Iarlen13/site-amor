@@ -9,11 +9,8 @@
       margin: 0;
       padding: 0;
       color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', 'Comic Sans MS', cursive;
       overflow: hidden;
-    }
-
-    body {
       background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
       background-size: cover;
       background-position: center;
@@ -26,7 +23,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.85);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -34,19 +31,18 @@
       cursor: pointer;
       z-index: 100;
       transition: opacity 0.5s ease-out;
+      text-align: center;
       padding: 1em;
-      box-sizing: border-box;
     }
 
     #tela-inicial h1 {
       font-size: 3em;
-      text-shadow: 0 0 10px #f9f871;
-      text-align: center;
+      text-shadow: 0 0 10px #ff9ecf, 0 0 20px #ff78b2;
     }
 
     #tela-inicial p {
       font-size: 1.2em;
-      margin-top: -10px;
+      opacity: 0.8;
     }
 
     #conteudo-central {
@@ -57,59 +53,71 @@
       height: 100vh;
       text-align: center;
       padding: 1em;
-      box-sizing: border-box;
       background-color: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
       opacity: 0;
       transition: opacity 1.5s ease-in-out;
     }
 
     #mensagem {
-      font-weight: 900;
-      font-family: 'Segoe UI Black', 'Arial Black', Arial, sans-serif;
-      font-size: 3.5em;
+      font-weight: 700;
+      font-size: 2.8em;
       color: #fff;
-      text-shadow: 0 0 7px #fff, 0 0 12px #f9f871, 0 0 20px #f9f871;
-      letter-spacing: 0.1em;
-      margin-bottom: 25px;
+      text-shadow: 0 0 5px #fff, 0 0 15px #f9f871, 0 0 30px #f973c6;
+      margin-bottom: 30px;
+      animation: slideUp 1s ease-out forwards;
       opacity: 0;
-      animation: slideUp 1s ease-out 0.5s forwards;
     }
 
     #imagens-container {
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 10px;
+      max-width: 450px;
+      width: 100%;
+      margin: 0 auto 30px auto;
+      justify-items: center;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-bottom: 25px;
     }
 
     .imagem-romantica {
-      width: 100%;
-      max-width: 300px;
+      grid-column: 2;
+      grid-row: 2;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
       border-radius: 20px;
       border: 3px solid #fff;
-      opacity: 0;
-      animation: scaleIn 1.2s forwards, pulsateGlow 4s infinite 2.5s;
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.7);
+      animation: pulseGlow 4s infinite, fadeIn 2s forwards;
     }
 
     .imagem-pequena {
-      width: 130px;
-      height: 130px;
+      width: 85px;
+      height: 85px;
       object-fit: cover;
-      border-radius: 15px;
+      border-radius: 12px;
       border: 2px solid #fff;
       box-shadow: 0 0 15px rgba(0,0,0,0.3);
       opacity: 0;
-      animation: scaleIn 1.2s forwards;
+      animation: scaleIn 1.2s ease forwards;
     }
+
+    /* Definições de posição em estrela (ordem no HTML importa!) */
+    .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; } /* Topo */
+    .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; } /* Esquerda */
+    .imagem-pequena:nth-of-type(3) { grid-column: 3; grid-row: 2; } /* Direita */
+    .imagem-pequena:nth-of-type(4) { grid-column: 2; grid-row: 3; } /* Baixo */
+    .imagem-pequena:nth-of-type(5) { grid-column: 1; grid-row: 1; } /* Topo-esquerda */
+    .imagem-pequena:nth-of-type(6) { grid-column: 3; grid-row: 1; } /* Topo-direita */
+    .imagem-pequena:nth-of-type(7) { grid-column: 1; grid-row: 3; } /* Inferior-esquerda */
+    .imagem-pequena:nth-of-type(8) { grid-column: 3; grid-row: 3; } /* Inferior-direita */
 
     .texto-final {
       font-size: 1.2em;
+      animation: fadeIn 2s ease 2s forwards;
       opacity: 0;
-      animation: fadeIn 1.5s ease-in-out 4.0s forwards;
     }
 
     audio {
@@ -117,58 +125,33 @@
     }
 
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-    @keyframes pulsateGlow {
-      0%, 100% { box-shadow: 0 0 25px rgba(255, 182, 193, 0.7); }
-      50% { box-shadow: 0 0 40px rgba(255, 182, 193, 1); }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 25px #ffaddd; }
+      50% { box-shadow: 0 0 40px #ffaddd; }
     }
 
-    /* ===== CRUZ PARA CELULAR ===== */
     @media (max-width: 768px) {
-      #mensagem {
-        font-size: 1.6em;
-        margin-bottom: 20px;
-        white-space: normal;
-      }
+      #mensagem { font-size: 2em; }
 
-      #imagens-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        gap: 10px;
-        align-items: center;
-        justify-items: center;
-        width: 100%;
-        max-width: 360px;
-      }
+   .imagem-romantica {
+      grid-column: 2;
+      grid-row: 2;
+      max-width: 140px;
+      border-radius: 15px;
+      border: 3px solid #fff;
+      opacity: 0;
+      animation: scaleIn 1.2s forwards, pulsateGlow 4s infinite 2.5s;
+}
+
 
       .imagem-pequena {
-        width: 85px;
-        height: 85px;
-        object-fit: cover;
-        border-radius: 12px;
-        border: 2px solid #fff;
-        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        width: 65px;
+        height: 65px;
       }
 
-      .imagem-romantica {
-        grid-column: 2;
-        grid-row: 2;
-        max-width: 140px;
-        border-radius: 15px;
-      }
-
-      /* Cruz - baseada na ordem correta das imagens */
-      .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; } /* Topo */
-      .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; } /* Esquerda */
-      .imagem-pequena:nth-of-type(4) { grid-column: 3; grid-row: 2; } /* Direita */
-      .imagem-pequena:nth-of-type(5) { grid-column: 2; grid-row: 3; } /* Baixo */
-
-      .texto-final {
-        font-size: 1em;
-        margin-top: 15px;
-      }
+      .texto-final { font-size: 1em; }
     }
   </style>
 </head>
@@ -176,21 +159,26 @@
 
 <div id="tela-inicial">
   <h1>Para Gislaine 💖</h1>
-  <p>(Clique para começar)</p>
+  <p>(Clique para começar a mágica)</p>
 </div>
 
 <div id="conteudo-central">
   <div id="mensagem"></div>
 
   <div id="imagens-container">
-    <img src="./homenaa/foto1.jpg" alt="Memória 1" class="imagem-pequena" />
-    <img src="./homenaa/foto5.jpg" alt="Memória 2" class="imagem-pequena" />
-    <img src="./homenaa/foto06.jpg" alt="Cena Romântica com casal" class="imagem-romantica" />
-    <img src="./homenaa/foto07.jpg" alt="Memória 3" class="imagem-pequena" />
-    <img src="./homenaa/foto2.jpg" alt="Memória 4" class="imagem-pequena" />
+    <img src="./homenaa/foto07.jpg" class="imagem-pequena" alt="Topo" />
+    <img src="./homenaa/foto2.jpg" class="imagem-pequena" alt="Esquerda" />
+    <img src="./homenaa/foto09.jpg" class="imagem-pequena" alt="Direita" />
+    <img src="./homenaa/foto08.jpg" class="imagem-pequena" alt="Baixo" />
+    <img src="./homenaa/foto10.jpg" class="imagem-pequena" alt="Topo Esquerda" />
+    <img src="./homenaa/foto1.jpg" class="imagem-pequena" alt="Topo Direita" />
+    <img src="./homenaa/foto4.jpg" class="imagem-pequena" alt="Inferior Esquerda" />
+    <img src="./homenaa/foto3.jpg" class="imagem-pequena" alt="Inferior Direita" />
+
+    <img src="./homenaa/foto06.jpg" class="imagem-romantica" alt="Casal" />
   </div>
 
-  <p class="texto-final">Espero que goste! 🌙✨</p>
+  <p class="texto-final">Cada momento com você é um verso da mais linda poesia. 🌙💫</p>
 </div>
 
 <audio id="musica-fundo" loop preload="auto">
@@ -204,7 +192,7 @@
     const musica = document.getElementById('musica-fundo');
     const mensagemElement = document.getElementById('mensagem');
 
-    const text = "Com você a minha vida é melhor ❤️";
+    const text = "Você é meu universo. ✨";
     let displayedText = "";
     let index = 0;
 
@@ -213,7 +201,7 @@
         displayedText += text.charAt(index);
         mensagemElement.textContent = displayedText;
         index++;
-        setTimeout(animateText, 150);
+        setTimeout(animateText, 120);
       }
     }
 
@@ -224,13 +212,12 @@
       }, 500);
 
       const playPromise = musica.play();
-
       if (playPromise !== undefined) {
         playPromise.then(() => {
           conteudoCentral.style.opacity = '1';
           animateText();
         }).catch(error => {
-          console.error("A música foi bloqueada:", error);
+          console.warn("Música bloqueada pelo navegador:", error);
           conteudoCentral.style.opacity = '1';
           animateText();
         });
@@ -243,3 +230,4 @@
 
 </body>
 </html>
+
