@@ -16,7 +16,7 @@
     body {
       background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
       background-size: cover;
-      background-position: center center;
+      background-position: center;
       background-attachment: fixed;
     }
 
@@ -124,12 +124,8 @@
       50% { box-shadow: 0 0 40px rgba(255, 182, 193, 1); }
     }
 
-    /* ===== CRUZ PARA CELULARES ===== */
+    /* ===== CRUZ PARA CELULAR ===== */
     @media (max-width: 768px) {
-      #tela-inicial h1 {
-        font-size: 2.2em;
-      }
-
       #mensagem {
         font-size: 1.6em;
         margin-bottom: 20px;
@@ -147,23 +143,27 @@
         max-width: 360px;
       }
 
+      .imagem-pequena {
+        width: 85px;
+        height: 85px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 2px solid #fff;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      }
+
       .imagem-romantica {
-        grid-column: 2 / 3;
-        grid-row: 2 / 3;
+        grid-column: 2;
+        grid-row: 2;
         max-width: 140px;
         border-radius: 15px;
       }
 
-      .imagem-pequena {
-        width: 85px;
-        height: 85px;
-        border-radius: 12px;
-      }
-
+      /* Cruz - baseada na ordem correta das imagens */
       .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; } /* Topo */
       .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; } /* Esquerda */
       .imagem-pequena:nth-of-type(4) { grid-column: 3; grid-row: 2; } /* Direita */
-      .imagem-pequena:nth-of-type(5) { grid-column: 2; grid-row: 3; } /* Abaixo */
+      .imagem-pequena:nth-of-type(5) { grid-column: 2; grid-row: 3; } /* Baixo */
 
       .texto-final {
         font-size: 1em;
@@ -183,13 +183,11 @@
   <div id="mensagem"></div>
 
   <div id="imagens-container">
-    <img src="./homenaa/foto1.jpg" alt="Memória 1" class="imagem-pequena" style="animation-delay: 2.0s;">
-    <img src="./homenaa/foto5.jpg" alt="Memória 2" class="imagem-pequena" style="animation-delay: 2.5s;">
-    
-    <img src="./homenaa/foto06.jpg" alt="Cena Romântica com casal" class="imagem-romantica" style="animation-delay: 1.5s;">
-    
-    <img src="./homenaa/foto07.jpg" alt="Memória 3" class="imagem-pequena" style="animation-delay: 2.5s;">
-    <img src="./homenaa/foto2.jpg" alt="Memória 4" class="imagem-pequena" style="animation-delay: 2.0s;">
+    <img src="./homenaa/foto1.jpg" alt="Memória 1" class="imagem-pequena" />
+    <img src="./homenaa/foto5.jpg" alt="Memória 2" class="imagem-pequena" />
+    <img src="./homenaa/foto06.jpg" alt="Cena Romântica com casal" class="imagem-romantica" />
+    <img src="./homenaa/foto07.jpg" alt="Memória 3" class="imagem-pequena" />
+    <img src="./homenaa/foto2.jpg" alt="Memória 4" class="imagem-pequena" />
   </div>
 
   <p class="texto-final">Espero que goste! 🌙✨</p>
