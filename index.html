@@ -129,7 +129,9 @@
             50% { box-shadow: 0 0 40px rgba(255, 182, 193, 1); }
         }
 
-        /* LAYOUT RESPONSIVO E ELEGANTE PARA CELULAR */
+        /* ================================================= */
+        /* == LAYOUT ESTÁVEL E CORRIGIDO PARA CELULARES ==    */
+        /* ================================================= */
         @media (max-width: 768px) {
             #tela-inicial h1 {
                 font-size: 2.2em;
@@ -138,29 +140,34 @@
             #mensagem {
                 font-size: 1.8em;
                 white-space: normal;
+                margin-bottom: 20px;
             }
 
             #imagens-container {
-                gap: 10px;
-                max-width: 320px;
-                margin-top: 15px;
-                margin-bottom: 15px;
+                /* Voltamos a usar Flexbox, que é mais seguro para este caso */
+                flex-direction: column; 
+                gap: 20px;
             }
 
             .imagem-romantica {
-                max-width: 90%; 
-                order: 3; /* Garante que ela seja o último item */
+                max-width: 80%; /* Tamanho da imagem principal no celular */
+                order: 2; /* Posição: no meio */
             }
 
             .imagem-pequena {
-                width: calc(50% - 5px); /* Cria a grade 2x2 (50% da largura - metade do gap) */
-                height: auto;
-                aspect-ratio: 1 / 1; /* Mantém as imagens pequenas quadradas */
-                order: 1; /* Coloca todas as pequenas antes da principal */
+                width: 150px; 
+                height: 150px;
             }
             
+            /* Coloca duas imagens pequenas em cima e duas embaixo */
+            .imagem-pequena:nth-of-type(1) { order: 1; }
+            .imagem-pequena:nth-of-type(2) { order: 1; }
+            .imagem-pequena:nth-of-type(3) { order: 3; }
+            .imagem-pequena:nth-of-type(4) { order: 3; }
+
             .texto-final {
                 font-size: 1em;
+                margin-top: 15px;
             }
         }
     </style>
@@ -201,7 +208,7 @@
         const mensagemElement = document.getElementById('mensagem');
 
         if (!telaInicial || !conteudoCentral || !musica || !mensagemElement) {
-            console.error("Erro Crítico: Um ou mais elementos essenciais não foram encontrados no HTML. Verifique os IDs: tela-inicial, conteudo-central, musica-fundo, mensagem.");
+            console.error("Erro Crítico: Um ou mais elementos essenciais não foram encontrados no HTML. Verifique os IDs.");
             return; 
         }
         
