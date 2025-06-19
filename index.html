@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Gislaine 💖</title>
     <style>
         body, html {
@@ -9,7 +10,7 @@
             padding: 0;
             color: #fff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden; /* Impede a rolagem da página */
+            overflow: hidden;
         }
 
         body {
@@ -19,6 +20,35 @@
             background-attachment: fixed;
         }
 
+        #tela-inicial {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 100;
+            transition: opacity 0.5s ease-out;
+            padding: 1em;
+            box-sizing: border-box;
+        }
+
+        #tela-inicial h1 {
+            font-size: 3em;
+            text-shadow: 0 0 10px #f9f871;
+            text-align: center;
+        }
+
+        #tela-inicial p {
+            font-size: 1.2em;
+            margin-top: -10px;
+        }
+
         #conteudo-central {
             display: flex;
             flex-direction: column;
@@ -26,29 +56,31 @@
             align-items: center;
             height: 100vh;
             text-align: center;
-            padding: 2em;
+            padding: 1em; /* Padding ajustado para telas menores */
             box-sizing: border-box;
             background-color: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(4px);
             -webkit-backdrop-filter: blur(4px);
-            animation: fadeIn 1.5s ease-in-out forwards;
+            opacity: 0; 
+            transition: opacity 1.5s ease-in-out;
         }
 
         #mensagem {
             font-weight: 900;
             font-family: 'Segoe UI Black', 'Arial Black', Arial, sans-serif;
-            font-size: 3.5em; /* Ajustado para dar mais espaço */
+            font-size: 3.5em;
             color: #fff;
             text-shadow:
                 0 0 7px #fff,
                 0 0 12px #f9f871,
                 0 0 20px #f9f871;
-            white-space: nowrap;
+            /* Removido o white-space: nowrap para permitir quebra de linha */
             letter-spacing: 0.1em;
             margin-bottom: 25px;
             opacity: 0;
             animation: slideUp 1s ease-out 0.5s forwards;
         }
+
         #imagens-container {
             display: flex;
             justify-content: center;
@@ -68,6 +100,7 @@
                 scaleIn 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards,
                 pulsateGlow 4s infinite 2.5s;
         }
+        
         .imagem-pequena {
             width: 130px;
             height: 130px;
@@ -89,45 +122,61 @@
             display: none;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
         @keyframes pulsateGlow {
-            0%, 100% {
-                box-shadow: 0 0 25px rgba(255, 182, 193, 0.7);
+            0%, 100% { box-shadow: 0 0 25px rgba(255, 182, 193, 0.7); }
+            50% { box-shadow: 0 0 40px rgba(255, 182, 193, 1); }
+        }
+
+        /* =============================================== */
+        /* == ESTILOS RESPONSIVOS PARA CELULARES == */
+        /* =============================================== */
+        @media (max-width: 768px) {
+            #tela-inicial h1 {
+                font-size: 2.2em; /* Fonte menor na tela inicial */
             }
-            50% {
-                box-shadow: 0 0 40px rgba(255, 182, 193, 1);
+
+            #mensagem {
+                font-size: 2em; /* Fonte da mensagem principal bem menor */
+                white-space: normal; /* Garante a quebra de linha */
+            }
+
+            #imagens-container {
+                flex-direction: column; /* Empilha as imagens na vertical */
+                gap: 20px;
+            }
+
+            .imagem-romantica {
+                max-width: 75%; /* Ocupa 75% da largura da tela */
+                order: 2; /* Muda a ordem para a imagem principal ficar no meio */
+            }
+
+            .imagem-pequena {
+                width: 150px; /* Um pouco maior para o layout vertical */
+                height: 150px;
+            }
+            
+            /* Define a ordem correta no layout vertical */
+            .imagem-pequena:nth-of-type(1) { order: 1; }
+            .imagem-pequena:nth-of-type(2) { order: 3; }
+            .imagem-pequena:nth-of-type(3) { order: 4; }
+            .imagem-pequena:nth-of-type(4) { order: 5; }
+
+            .texto-final {
+                font-size: 1em;
             }
         }
 
     </style>
 </head>
 <body>
+
+<div id="tela-inicial">
+    <h1>Para Gislaine 💖</h1>
+    <p>(Clique para começar)</p>
+</div>
 
 <div id="conteudo-central">
     <div id="mensagem"></div>
@@ -145,8 +194,16 @@
     <p class="texto-final">Espero que goste! 🌙✨</p>
 </div>
 
+<audio id="musica-fundo" loop>
+    <source src="homenaa/musica_amor.mp3" type="audio/mpeg">
+</audio>
+
 <script>
+    const telaInicial = document.getElementById('tela-inicial');
+    const conteudoCentral = document.getElementById('conteudo-central');
+    const musica = document.getElementById('musica-fundo');
     const mensagemElement = document.getElementById('mensagem');
+    
     const text = "Com você a minha vida é melhor ❤️";
     let displayedText = "";
     let index = 0;
@@ -159,8 +216,19 @@
             setTimeout(animateText, 150);
         }
     }
-    
-    setTimeout(animateText, 1000);
+
+    function iniciarHomenagem() {
+        telaInicial.style.opacity = '0';
+        setTimeout(() => {
+            telaInicial.style.display = 'none';
+        }, 500);
+
+        musica.play();
+        conteudoCentral.style.opacity = '1';
+        setTimeout(animateText, 1000);
+    }
+
+    telaInicial.addEventListener('click', iniciarHomenagem);
 </script>
 
 </body>
