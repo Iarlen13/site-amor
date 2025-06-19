@@ -1,149 +1,142 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Gislaine 💖</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Gislaine 💖</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
 
-        body {
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-        }
+    body {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+    }
 
-        #tela-inicial {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            cursor: pointer;
-            z-index: 100;
-            transition: opacity 0.5s ease-out;
-            padding: 1em;
-            box-sizing: border-box;
-        }
+    #tela-inicial {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 100;
+      transition: opacity 0.5s ease-out;
+      padding: 1em;
+      box-sizing: border-box;
+    }
 
-        #tela-inicial h1 {
-            font-size: 3em;
-            text-shadow: 0 0 10px #f9f871;
-            text-align: center;
-        }
-
-        #tela-inicial p {
-            font-size: 1.2em;
-            margin-top: -10px;
-        }
-
-        #conteudo-central {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-            padding: 1em;
-            box-sizing: border-box;
-            background-color: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            opacity: 0; 
-            transition: opacity 1.5s ease-in-out;
-        }
-
-        #mensagem {
-            font-weight: 900;
-            font-family: 'Segoe UI Black', 'Arial Black', Arial, sans-serif;
-            font-size: 3.5em;
-            color: #fff;
-            text-shadow:
-                0 0 7px #fff,
-                0 0 12px #f9f871,
-                0 0 20px #f9f871;
-            letter-spacing: 0.1em;
-            margin-bottom: 25px;
-            opacity: 0;
-            animation: slideUp 1s ease-out 0.5s forwards;
-        }
-
-        #imagens-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap; 
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .imagem-romantica {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 20px;
-            border: 3px solid #fff;
-            opacity: 0;
-            animation: 
-                scaleIn 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards,
-                pulsateGlow 4s infinite 2.5s;
-        }
-        
-        .imagem-pequena {
-            width: 130px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 15px;
-            border: 2px solid #fff;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-            opacity: 0;
-            animation: scaleIn 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
-        }
-        
-        .texto-final {
-            font-size: 1.2em;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in-out 4.0s forwards;
-        }
-
-        audio {
-            display: none;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        @keyframes pulsateGlow {
-            0%, 100% { box-shadow: 0 0 25px rgba(255, 182, 193, 0.7); }
-            50% { box-shadow: 0 0 40px rgba(255, 182, 193, 1); }
-        }
-
-        /* ================================================= */
-        /* == LAYOUT EM CRUZ PERFEITO PARA CELULARES == */
-        /* ================================================= */
-        @media (max-width: 768px) {
     #tela-inicial h1 {
-        font-size: 2.2em;
+      font-size: 3em;
+      text-shadow: 0 0 10px #f9f871;
+      text-align: center;
+    }
+
+    #tela-inicial p {
+      font-size: 1.2em;
+      margin-top: -10px;
+    }
+
+    #conteudo-central {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 1em;
+      box-sizing: border-box;
+      background-color: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
     }
 
     #mensagem {
-        font-size: 1.6em;
-        white-space: normal;
-        margin-bottom: 20px;
+      font-weight: 900;
+      font-family: 'Segoe UI Black', 'Arial Black', Arial, sans-serif;
+      font-size: 3.5em;
+      color: #fff;
+      text-shadow: 0 0 7px #fff, 0 0 12px #f9f871, 0 0 20px #f9f871;
+      letter-spacing: 0.1em;
+      margin-bottom: 25px;
+      opacity: 0;
+      animation: slideUp 1s ease-out 0.5s forwards;
     }
 
     #imagens-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .imagem-romantica {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 20px;
+      border: 3px solid #fff;
+      opacity: 0;
+      animation: scaleIn 1.2s forwards, pulsateGlow 4s infinite 2.5s;
+    }
+
+    .imagem-pequena {
+      width: 130px;
+      height: 130px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 2px solid #fff;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      opacity: 0;
+      animation: scaleIn 1.2s forwards;
+    }
+
+    .texto-final {
+      font-size: 1.2em;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out 4.0s forwards;
+    }
+
+    audio {
+      display: none;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulsateGlow {
+      0%, 100% { box-shadow: 0 0 25px rgba(255, 182, 193, 0.7); }
+      50% { box-shadow: 0 0 40px rgba(255, 182, 193, 1); }
+    }
+
+    /* ===== CRUZ PARA CELULARES ===== */
+    @media (max-width: 768px) {
+      #tela-inicial h1 {
+        font-size: 2.2em;
+      }
+
+      #mensagem {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+        white-space: normal;
+      }
+
+      #imagens-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
@@ -152,132 +145,102 @@
         justify-items: center;
         width: 100%;
         max-width: 360px;
-    }
+      }
 
-    /* Central (imagem-romantica no meio da cruz) */
-    .imagem-romantica {
+      .imagem-romantica {
         grid-column: 2 / 3;
         grid-row: 2 / 3;
         max-width: 140px;
         border-radius: 15px;
-    }
+      }
 
-    /* Topo */
-    .imagem-pequena:nth-of-type(1) {
-        grid-column: 2 / 3;
-        grid-row: 1 / 2;
-    }
-
-    /* Esquerda */
-    .imagem-pequena:nth-of-type(2) {
-        grid-column: 1 / 2;
-        grid-row: 2 / 3;
-    }
-
-    /* Direita */
-    .imagem-pequena:nth-of-type(4) {
-        grid-column: 3 / 4;
-        grid-row: 2 / 3;
-    }
-
-    /* Abaixo */
-    .imagem-pequena:nth-of-type(5) {
-        grid-column: 2 / 3;
-        grid-row: 3 / 4;
-    }
-
-    .imagem-pequena {
+      .imagem-pequena {
         width: 85px;
         height: 85px;
-        object-fit: cover;
         border-radius: 12px;
-        border: 2px solid #fff;
-        box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    }
+      }
 
-    .texto-final {
+      .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; } /* Topo */
+      .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; } /* Esquerda */
+      .imagem-pequena:nth-of-type(4) { grid-column: 3; grid-row: 2; } /* Direita */
+      .imagem-pequena:nth-of-type(5) { grid-column: 2; grid-row: 3; } /* Abaixo */
+
+      .texto-final {
         font-size: 1em;
         margin-top: 15px;
+      }
     }
-}
-
-    </style>
+  </style>
 </head>
 <body>
 
 <div id="tela-inicial">
-    <h1>Para Gislaine 💖</h1>
-    <p>(Clique para começar)</p>
+  <h1>Para Gislaine 💖</h1>
+  <p>(Clique para começar)</p>
 </div>
 
 <div id="conteudo-central">
-    <div id="mensagem"></div>
-    
-    <div id="imagens-container">
-        <img src="./homenaa/foto1.jpg" alt="Memória 1" class="imagem-pequena" style="animation-delay: 2.0s;">
-        <img src="./homenaa/foto5.jpg" alt="Memória 2" class="imagem-pequena" style="animation-delay: 2.5s;">
-        
-        <img src="./homenaa/foto06.jpg" alt="Cena Romântica com casal" class="imagem-romantica" style="animation-delay: 1.5s;">
-        
-        <img src="./homenaa/foto07.jpg" alt="Memória 3" class="imagem-pequena" style="animation-delay: 2.5s;">
-        <img src="./homenaa/foto2.jpg" alt="Memória 4" class="imagem-pequena" style="animation-delay: 2.0s;">
-    </div>
+  <div id="mensagem"></div>
 
-    <p class="texto-final">Espero que goste! 🌙✨</p>
+  <div id="imagens-container">
+    <img src="./homenaa/foto1.jpg" alt="Memória 1" class="imagem-pequena" style="animation-delay: 2.0s;">
+    <img src="./homenaa/foto5.jpg" alt="Memória 2" class="imagem-pequena" style="animation-delay: 2.5s;">
+    
+    <img src="./homenaa/foto06.jpg" alt="Cena Romântica com casal" class="imagem-romantica" style="animation-delay: 1.5s;">
+    
+    <img src="./homenaa/foto07.jpg" alt="Memória 3" class="imagem-pequena" style="animation-delay: 2.5s;">
+    <img src="./homenaa/foto2.jpg" alt="Memória 4" class="imagem-pequena" style="animation-delay: 2.0s;">
+  </div>
+
+  <p class="texto-final">Espero que goste! 🌙✨</p>
 </div>
 
 <audio id="musica-fundo" loop preload="auto">
-    <source src="./homenaa/musica_amor.mp3" type="audio/mpeg">
+  <source src="./homenaa/musica_amor.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        const telaInicial = document.getElementById('tela-inicial');
-        const conteudoCentral = document.getElementById('conteudo-central');
-        const musica = document.getElementById('musica-fundo');
-        const mensagemElement = document.getElementById('mensagem');
+  document.addEventListener('DOMContentLoaded', function () {
+    const telaInicial = document.getElementById('tela-inicial');
+    const conteudoCentral = document.getElementById('conteudo-central');
+    const musica = document.getElementById('musica-fundo');
+    const mensagemElement = document.getElementById('mensagem');
 
-        if (!telaInicial || !conteudoCentral || !musica || !mensagemElement) {
-            console.error("Erro Crítico: Um ou mais elementos essenciais não foram encontrados no HTML. Verifique os IDs.");
-            return; 
-        }
-        
-        const text = "Com você a minha vida é melhor ❤️";
-        let displayedText = "";
-        let index = 0;
+    const text = "Com você a minha vida é melhor ❤️";
+    let displayedText = "";
+    let index = 0;
 
-        function animateText() {
-            if (index < text.length) {
-                displayedText += text.charAt(index);
-                mensagemElement.textContent = displayedText;
-                index++;
-                setTimeout(animateText, 150);
-            }
-        }
+    function animateText() {
+      if (index < text.length) {
+        displayedText += text.charAt(index);
+        mensagemElement.textContent = displayedText;
+        index++;
+        setTimeout(animateText, 150);
+      }
+    }
 
-        function iniciarHomenagem() {
-            telaInicial.style.opacity = '0';
-            setTimeout(() => {
-                telaInicial.style.display = 'none';
-            }, 500);
+    function iniciarHomenagem() {
+      telaInicial.style.opacity = '0';
+      setTimeout(() => {
+        telaInicial.style.display = 'none';
+      }, 500);
 
-            const playPromise = musica.play();
+      const playPromise = musica.play();
 
-            if (playPromise !== undefined) {
-                playPromise.then(_ => {
-                    conteudoCentral.style.opacity = '1';
-                    animateText();
-                }).catch(error => {
-                    console.error("A música foi bloqueada pelo navegador:", error);
-                    conteudoCentral.style.opacity = '1';
-                    animateText();
-                });
-            }
-        }
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          conteudoCentral.style.opacity = '1';
+          animateText();
+        }).catch(error => {
+          console.error("A música foi bloqueada:", error);
+          conteudoCentral.style.opacity = '1';
+          animateText();
+        });
+      }
+    }
 
-        telaInicial.addEventListener('click', iniciarHomenagem);
-    });
+    telaInicial.addEventListener('click', iniciarHomenagem);
+  });
 </script>
 
 </body>
