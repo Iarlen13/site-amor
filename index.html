@@ -129,38 +129,54 @@
             50% { box-shadow: 0 0 40px rgba(255, 182, 193, 1); }
         }
 
+        /* ESTILOS CORRIGIDOS PARA CELULAR */
         @media (max-width: 768px) {
             #tela-inicial h1 {
                 font-size: 2.2em;
             }
 
             #mensagem {
-                font-size: 2em;
-                white-space: normal;
+                font-size: 1.8em; /* Fonte da mensagem principal ajustada */
+                white-space: normal; /* Garante a quebra de linha */
             }
 
             #imagens-container {
-                flex-direction: column;
-                gap: 20px;
+                flex-direction: column; /* Empilha as imagens na vertical */
+                gap: 15px; /* Espaço vertical entre as imagens */
             }
 
             .imagem-romantica {
-                max-width: 75%;
-                order: 2;
+                max-width: 250px; /* Tamanho ajustado para a imagem principal */
+                order: 2; /* Deixa a imagem principal no meio da sequência vertical */
             }
 
             .imagem-pequena {
-                width: 150px;
-                height: 150px;
+                width: 120px; /* Tamanho ajustado para as imagens menores */
+                height: 120px;
             }
             
+            /* Define a ordem correta no layout vertical */
             .imagem-pequena:nth-of-type(1) { order: 1; }
-            .imagem-pequena:nth-of-type(2) { order: 3; }
-            .imagem-pequena:nth-of-type(3) { order: 4; }
-            .imagem-pequena:nth-of-type(4) { order: 5; }
+            .imagem-pequena:nth-of-type(2) { order: 1; } /* As duas primeiras ficam em cima */
+            .imagem-pequena:nth-of-type(3) { order: 3; } /* As duas últimas ficam embaixo */
+            .imagem-pequena:nth-of-type(4) { order: 3; }
 
             .texto-final {
                 font-size: 1em;
+            }
+        }
+        
+        /* Ajuste fino para telas ainda menores */
+        @media (max-width: 380px) {
+             #mensagem {
+                font-size: 1.5em;
+            }
+            .imagem-romantica {
+                max-width: 200px;
+            }
+            .imagem-pequena {
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
@@ -193,19 +209,16 @@
 </audio>
 
 <script>
-    // Espera o documento HTML carregar completamente antes de executar o script
     document.addEventListener('DOMContentLoaded', function() {
         
-        // Seleciona todos os elementos necessários
         const telaInicial = document.getElementById('tela-inicial');
         const conteudoCentral = document.getElementById('conteudo-central');
         const musica = document.getElementById('musica-fundo');
         const mensagemElement = document.getElementById('mensagem');
 
-        // Garante que os elementos essenciais existem antes de continuar
         if (!telaInicial || !conteudoCentral || !musica || !mensagemElement) {
             console.error("Erro: Um ou mais elementos essenciais não foram encontrados no HTML. Verifique os IDs.");
-            return; // Para a execução se algo estiver faltando
+            return;
         }
         
         const text = "Com você a minha vida é melhor ❤️";
@@ -222,30 +235,25 @@
         }
 
         function iniciarHomenagem() {
-            // Inicia o fade-out da tela inicial
             telaInicial.style.opacity = '0';
             setTimeout(() => {
                 telaInicial.style.display = 'none';
             }, 500);
 
-            // Tenta tocar a música e sincroniza as animações
             const playPromise = musica.play();
 
             if (playPromise !== undefined) {
                 playPromise.then(_ => {
-                    // A música começou, agora mostra o conteúdo
                     conteudoCentral.style.opacity = '1';
                     animateText();
                 }).catch(error => {
                     console.error("A música foi bloqueada pelo navegador:", error);
-                    // Mesmo se a música falhar, mostra o conteúdo
                     conteudoCentral.style.opacity = '1';
                     animateText();
                 });
             }
         }
 
-        // Adiciona o evento de clique na tela inicial
         telaInicial.addEventListener('click', iniciarHomenagem);
     });
 </script>
