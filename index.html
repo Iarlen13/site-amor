@@ -56,7 +56,7 @@
             align-items: center;
             height: 100vh;
             text-align: center;
-            padding: 1em; /* Padding ajustado para telas menores */
+            padding: 1em;
             box-sizing: border-box;
             background-color: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(4px);
@@ -74,7 +74,6 @@
                 0 0 7px #fff,
                 0 0 12px #f9f871,
                 0 0 20px #f9f871;
-            /* Removido o white-space: nowrap para permitir quebra de linha */
             letter-spacing: 0.1em;
             margin-bottom: 25px;
             opacity: 0;
@@ -130,35 +129,31 @@
             50% { box-shadow: 0 0 40px rgba(255, 182, 193, 1); }
         }
 
-        /* =============================================== */
-        /* == ESTILOS RESPONSIVOS PARA CELULARES == */
-        /* =============================================== */
         @media (max-width: 768px) {
             #tela-inicial h1 {
-                font-size: 2.2em; /* Fonte menor na tela inicial */
+                font-size: 2.2em;
             }
 
             #mensagem {
-                font-size: 2em; /* Fonte da mensagem principal bem menor */
-                white-space: normal; /* Garante a quebra de linha */
+                font-size: 2em;
+                white-space: normal;
             }
 
             #imagens-container {
-                flex-direction: column; /* Empilha as imagens na vertical */
+                flex-direction: column;
                 gap: 20px;
             }
 
             .imagem-romantica {
-                max-width: 75%; /* Ocupa 75% da largura da tela */
-                order: 2; /* Muda a ordem para a imagem principal ficar no meio */
+                max-width: 75%;
+                order: 2;
             }
 
             .imagem-pequena {
-                width: 150px; /* Um pouco maior para o layout vertical */
+                width: 150px;
                 height: 150px;
             }
             
-            /* Define a ordem correta no layout vertical */
             .imagem-pequena:nth-of-type(1) { order: 1; }
             .imagem-pequena:nth-of-type(2) { order: 3; }
             .imagem-pequena:nth-of-type(3) { order: 4; }
@@ -168,7 +163,6 @@
                 font-size: 1em;
             }
         }
-
     </style>
 </head>
 <body>
@@ -182,53 +176,78 @@
     <div id="mensagem"></div>
     
     <div id="imagens-container">
-        <img src="homenaa/foto1.jpg" alt="Memória 1" class="imagem-pequena" style="animation-delay: 2.5s;">
-        <img src="homenaa/foto5.jpg" alt="Memória 2" class="imagem-pequena" style="animation-delay: 2.0s;">
+        <img src="./homenaa/foto1.jpg" alt="Memória 1" class="imagem-pequena" style="animation-delay: 2.5s;">
+        <img src="./homenaa/foto5.jpg" alt="Memória 2" class="imagem-pequena" style="animation-delay: 2.0s;">
         
-        <img src="homenaa/foto06.jpg" alt="Cena Romântica com casal" class="imagem-romantica" style="animation-delay: 1.5s;">
+        <img src="./homenaa/foto06.jpg" alt="Cena Romântica com casal" class="imagem-romantica" style="animation-delay: 1.5s;">
         
-        <img src="homenaa/foto07.jpg" alt="Memória 3" class="imagem-pequena" style="animation-delay: 2.0s;">
-        <img src="homenaa/foto2.jpg" alt="Memória 4" class="imagem-pequena" style="animation-delay: 2.5s;">
+        <img src="./homenaa/foto07.jpg" alt="Memória 3" class="imagem-pequena" style="animation-delay: 2.0s;">
+        <img src="./homenaa/foto2.jpg" alt="Memória 4" class="imagem-pequena" style="animation-delay: 2.5s;">
     </div>
 
     <p class="texto-final">Espero que goste! 🌙✨</p>
 </div>
 
-<audio id="musica-fundo" loop>
-    <source src="homenaa/musica_amor.mp3" type="audio/mpeg">
+<audio id="musica-fundo" loop preload="auto">
+    <source src="./homenaa/musica_amor.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-    const telaInicial = document.getElementById('tela-inicial');
-    const conteudoCentral = document.getElementById('conteudo-central');
-    const musica = document.getElementById('musica-fundo');
-    const mensagemElement = document.getElementById('mensagem');
-    
-    const text = "Com você a minha vida é melhor ❤️";
-    let displayedText = "";
-    let index = 0;
+    // Espera o documento HTML carregar completamente antes de executar o script
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Seleciona todos os elementos necessários
+        const telaInicial = document.getElementById('tela-inicial');
+        const conteudoCentral = document.getElementById('conteudo-central');
+        const musica = document.getElementById('musica-fundo');
+        const mensagemElement = document.getElementById('mensagem');
 
-    function animateText() {
-        if (index < text.length) {
-            displayedText += text.charAt(index);
-            mensagemElement.textContent = displayedText;
-            index++;
-            setTimeout(animateText, 150);
+        // Garante que os elementos essenciais existem antes de continuar
+        if (!telaInicial || !conteudoCentral || !musica || !mensagemElement) {
+            console.error("Erro: Um ou mais elementos essenciais não foram encontrados no HTML. Verifique os IDs.");
+            return; // Para a execução se algo estiver faltando
         }
-    }
+        
+        const text = "Com você a minha vida é melhor ❤️";
+        let displayedText = "";
+        let index = 0;
 
-    function iniciarHomenagem() {
-        telaInicial.style.opacity = '0';
-        setTimeout(() => {
-            telaInicial.style.display = 'none';
-        }, 500);
+        function animateText() {
+            if (index < text.length) {
+                displayedText += text.charAt(index);
+                mensagemElement.textContent = displayedText;
+                index++;
+                setTimeout(animateText, 150);
+            }
+        }
 
-        musica.play();
-        conteudoCentral.style.opacity = '1';
-        setTimeout(animateText, 1000);
-    }
+        function iniciarHomenagem() {
+            // Inicia o fade-out da tela inicial
+            telaInicial.style.opacity = '0';
+            setTimeout(() => {
+                telaInicial.style.display = 'none';
+            }, 500);
 
-    telaInicial.addEventListener('click', iniciarHomenagem);
+            // Tenta tocar a música e sincroniza as animações
+            const playPromise = musica.play();
+
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // A música começou, agora mostra o conteúdo
+                    conteudoCentral.style.opacity = '1';
+                    animateText();
+                }).catch(error => {
+                    console.error("A música foi bloqueada pelo navegador:", error);
+                    // Mesmo se a música falhar, mostra o conteúdo
+                    conteudoCentral.style.opacity = '1';
+                    animateText();
+                });
+            }
+        }
+
+        // Adiciona o evento de clique na tela inicial
+        telaInicial.addEventListener('click', iniciarHomenagem);
+    });
 </script>
 
 </body>
