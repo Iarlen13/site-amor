@@ -133,52 +133,74 @@
         /* == LAYOUT EM CRUZ PERFEITO PARA CELULARES == */
         /* ================================================= */
         @media (max-width: 768px) {
-            #tela-inicial h1 {
-                font-size: 2.2em;
-            }
+    #tela-inicial h1 {
+        font-size: 2.2em;
+    }
 
-            #mensagem {
-                font-size: 1.6em; /* Um pouco menor para dar espaço à cruz */
-                white-space: normal;
-                margin-bottom: 20px;
-            }
+    #mensagem {
+        font-size: 1.6em;
+        white-space: normal;
+        margin-bottom: 20px;
+    }
 
-            #imagens-container {
-                display: grid; /* MUDANÇA PARA GRID */
-                grid-template-columns: 1fr 1fr 1fr; /* 3 colunas de tamanho igual */
-                grid-template-rows: auto auto auto; /* 3 linhas automáticas */
-                align-items: center;
-                justify-items: center;
-                gap: 10px;
-                width: 100%;
-                max-width: 360px; /* Largura máxima para a cruz */
-            }
+    #imagens-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 10px;
+        align-items: center;
+        justify-items: center;
+        width: 100%;
+        max-width: 360px;
+    }
 
-            .imagem-romantica {
-                grid-column: 2 / 3; /* Posição: coluna 2 */
-                grid-row: 2 / 3;    /* Posição: linha 2 */
-                max-width: 160px; /* Tamanho da imagem central */
-                /* A propriedade 'order' não é mais necessária */
-            }
+    /* Central (imagem-romantica no meio da cruz) */
+    .imagem-romantica {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        max-width: 140px;
+        border-radius: 15px;
+    }
 
-            .imagem-pequena {
-                width: 90px; /* Tamanho das imagens da cruz */
-                height: 90px;
-                /* As propriedades de 'calc' e 'order' não são mais necessárias */
-            }
-            
-            /* Posicionando cada imagem pequena no seu lugar na cruz */
-            /* A ordem aqui é baseada na ordem das imagens no seu HTML */
-            .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; } /* Topo */
-            .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; } /* Esquerda */
-            .imagem-pequena:nth-of-type(3) { grid-column: 3; grid-row: 2; } /* Direita */
-            .imagem-pequena:nth-of-type(4) { grid-column: 2; grid-row: 3; } /* Abaixo */
+    /* Topo */
+    .imagem-pequena:nth-of-type(1) {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
 
-            .texto-final {
-                font-size: 1em;
-                margin-top: 15px;
-            }
-        }
+    /* Esquerda */
+    .imagem-pequena:nth-of-type(2) {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    /* Direita */
+    .imagem-pequena:nth-of-type(4) {
+        grid-column: 3 / 4;
+        grid-row: 2 / 3;
+    }
+
+    /* Abaixo */
+    .imagem-pequena:nth-of-type(5) {
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+    }
+
+    .imagem-pequena {
+        width: 85px;
+        height: 85px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 2px solid #fff;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .texto-final {
+        font-size: 1em;
+        margin-top: 15px;
+    }
+}
+
     </style>
 </head>
 <body>
