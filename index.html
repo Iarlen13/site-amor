@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Para Gislaine 💖</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden; /* Impede a rolagem da página */
+        }
+
+        body {
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+
+        #conteudo-central {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 2em;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        #mensagem {
+            font-weight: 900;
+            font-family: 'Segoe UI Black', 'Arial Black', Arial, sans-serif;
+            font-size: 3.5em; /* Ajustado para dar mais espaço */
+            color: #fff;
+            text-shadow:
+                0 0 7px #fff,
+                0 0 12px #f9f871,
+                0 0 20px #f9f871;
+            white-space: nowrap;
+            letter-spacing: 0.1em;
+            margin-bottom: 25px;
+            opacity: 0;
+            animation: slideUp 1s ease-out 0.5s forwards;
+        }
+        #imagens-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; 
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .imagem-romantica {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 20px;
+            border: 3px solid #fff;
+            opacity: 0;
+            animation: 
+                scaleIn 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards,
+                pulsateGlow 4s infinite 2.5s;
+        }
+        .imagem-pequena {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            animation: scaleIn 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) forwards;
+        }
+        
+        .texto-final {
+            font-size: 1.2em;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out 4.0s forwards;
+        }
+
+        audio {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulsateGlow {
+            0%, 100% {
+                box-shadow: 0 0 25px rgba(255, 182, 193, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 182, 193, 1);
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="conteudo-central">
+    <div id="mensagem"></div>
+    
+    <div id="imagens-container">
+        <img src="homenaa/foto1.jpg" alt="Memória 1" class="imagem-pequena" style="animation-delay: 2.5s;">
+        <img src="homenaa/foto5.jpg" alt="Memória 2" class="imagem-pequena" style="animation-delay: 2.0s;">
+        
+        <img src="homenaa/foto06.jpg" alt="Cena Romântica com casal" class="imagem-romantica" style="animation-delay: 1.5s;">
+        
+        <img src="homenaa/foto07.jpg" alt="Memória 3" class="imagem-pequena" style="animation-delay: 2.0s;">
+        <img src="homenaa/foto2.jpg" alt="Memória 4" class="imagem-pequena" style="animation-delay: 2.5s;">
+    </div>
+
+    <p class="texto-final">Espero que goste! 🌙✨</p>
+</div>
+
+<script>
+    const mensagemElement = document.getElementById('mensagem');
+    const text = "Com você a minha vida é melhor ❤️";
+    let displayedText = "";
+    let index = 0;
+
+    function animateText() {
+        if (index < text.length) {
+            displayedText += text.charAt(index);
+            mensagemElement.textContent = displayedText;
+            index++;
+            setTimeout(animateText, 150);
+        }
+    }
+    
+    setTimeout(animateText, 1000);
+</script>
+
+</body>
+</html>
