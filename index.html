@@ -129,54 +129,38 @@
             50% { box-shadow: 0 0 40px rgba(255, 182, 193, 1); }
         }
 
-        /* ESTILOS CORRIGIDOS PARA CELULAR */
+        /* LAYOUT RESPONSIVO E ELEGANTE PARA CELULAR */
         @media (max-width: 768px) {
             #tela-inicial h1 {
                 font-size: 2.2em;
             }
 
             #mensagem {
-                font-size: 1.8em; /* Fonte da mensagem principal ajustada */
-                white-space: normal; /* Garante a quebra de linha */
+                font-size: 1.8em;
+                white-space: normal;
             }
 
             #imagens-container {
-                flex-direction: column; /* Empilha as imagens na vertical */
-                gap: 15px; /* Espaço vertical entre as imagens */
+                gap: 10px;
+                max-width: 320px;
+                margin-top: 15px;
+                margin-bottom: 15px;
             }
 
             .imagem-romantica {
-                max-width: 250px; /* Tamanho ajustado para a imagem principal */
-                order: 2; /* Deixa a imagem principal no meio da sequência vertical */
+                max-width: 90%; 
+                order: 3; /* Garante que ela seja o último item */
             }
 
             .imagem-pequena {
-                width: 120px; /* Tamanho ajustado para as imagens menores */
-                height: 120px;
+                width: calc(50% - 5px); /* Cria a grade 2x2 (50% da largura - metade do gap) */
+                height: auto;
+                aspect-ratio: 1 / 1; /* Mantém as imagens pequenas quadradas */
+                order: 1; /* Coloca todas as pequenas antes da principal */
             }
             
-            /* Define a ordem correta no layout vertical */
-            .imagem-pequena:nth-of-type(1) { order: 1; }
-            .imagem-pequena:nth-of-type(2) { order: 1; } /* As duas primeiras ficam em cima */
-            .imagem-pequena:nth-of-type(3) { order: 3; } /* As duas últimas ficam embaixo */
-            .imagem-pequena:nth-of-type(4) { order: 3; }
-
             .texto-final {
                 font-size: 1em;
-            }
-        }
-        
-        /* Ajuste fino para telas ainda menores */
-        @media (max-width: 380px) {
-             #mensagem {
-                font-size: 1.5em;
-            }
-            .imagem-romantica {
-                max-width: 200px;
-            }
-            .imagem-pequena {
-                width: 100px;
-                height: 100px;
             }
         }
     </style>
@@ -217,8 +201,8 @@
         const mensagemElement = document.getElementById('mensagem');
 
         if (!telaInicial || !conteudoCentral || !musica || !mensagemElement) {
-            console.error("Erro: Um ou mais elementos essenciais não foram encontrados no HTML. Verifique os IDs.");
-            return;
+            console.error("Erro Crítico: Um ou mais elementos essenciais não foram encontrados no HTML. Verifique os IDs: tela-inicial, conteudo-central, musica-fundo, mensagem.");
+            return; 
         }
         
         const text = "Com você a minha vida é melhor ❤️";
