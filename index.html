@@ -21,9 +21,11 @@
       margin: 0;
       padding: 0;
       color: var(--text-color);
-      overflow: hidden;
-      /* A COR DE FUNDO FOI REMOVIDA DAQUI PARA NÃO BLOQUEAR A IMAGEM */
       position: relative;
+    }
+    
+    body {
+        overflow-x: hidden; 
     }
 
     /* === FUNDO ANIMADO DE ESTRELAS === */
@@ -33,7 +35,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* A COR DE FUNDO AGORA ESTÁ AQUI, COMO UM PLANO B */
       background-color: var(--dark-blue);
       background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
       background-size: cover;
@@ -118,9 +119,11 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      width: 100%;
       text-align: center;
-      padding: 1em;
+      padding: 2em 1em; 
+      box-sizing: border-box;
       background-color: rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(4px);
       opacity: 0;
@@ -148,7 +151,6 @@
       align-items: center;
     }
 
-    /* ESTILO DA BORDA DOURADA/ROSA PULSANTE */
     @keyframes borderPulse {
       0% { border-color: var(--gold); box-shadow: 0 0 20px var(--soft-pink); }
       50% { border-color: var(--soft-pink); box-shadow: 0 0 30px var(--gold); }
@@ -173,7 +175,8 @@
       width: 100px;
       height: 100px;
       object-fit: cover;
-      border-radius: 50%; /* FOTOS MENORES AGORA SÃO CÍRCULOS */
+      /* === ALTERAÇÃO PRINCIPAL AQUI === */
+      border-radius: 15px; /* VOLTOU A SER UM QUADRADO COM CANTOS ARREDONDADOS */
       border: 3px double transparent;
       opacity: 0;
       transform: scale(0.8);
@@ -185,7 +188,6 @@
       50% { transform: translateY(-10px) scale(1.05); }
     }
 
-    /* Atrasos mantidos para aparição em cascata */
     .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; animation-delay: 0.8s, 1s, 0.8s; } 
     .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; animation-delay: 1.0s, 1.2s, 1s; } 
     .imagem-pequena:nth-of-type(3) { grid-column: 3; grid-row: 2; animation-delay: 1.2s, 1.4s, 1.2s; } 
@@ -202,6 +204,7 @@
       letter-spacing: 1px;
       animation: fadeIn 2s ease 3s forwards;
       opacity: 0;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
     }
 
     audio { display: none; }
@@ -211,12 +214,26 @@
 
     /* === AJUSTES FINOS PARA CELULAR === */
     @media (max-width: 768px) {
-      #tela-inicial h1 { font-size: 3em; }
+      #conteudo-central { padding: 1em; }
       #mensagem { font-size: 3em; margin-bottom: 20px; }
-      #imagens-container { max-width: 100%; gap: 10px; }
+      
+      #imagens-container {
+        max-width: 100%;
+        gap: 10px;
+        margin-bottom: 25px;
+      }
+      
       .imagem-romantica { max-width: 160px; border-width: 3px; }
-      .imagem-pequena { width: 65px; height: 65px; border-width: 2px; }
-      .texto-final { font-size: 1.2em; }
+      .imagem-pequena { 
+        width: 65px;
+        height: 65px;
+        border-width: 2px;
+        border-radius: 10px; /* Borda um pouco menos redonda para o tamanho menor */
+      }
+      
+      .texto-final {
+        font-size: 1.1em;
+      }
     }
   </style>
 </head>
@@ -287,22 +304,23 @@
     }
 
     function iniciarHomenagem() {
-      telaInicial.style.opacity = '0';
-      setTimeout(() => {
-        telaInicial.style.display = 'none';
-      }, 800);
+        document.body.style.overflowY = 'auto'; // Permite a rolagem após o início
+        telaInicial.style.opacity = '0';
+        setTimeout(() => {
+            telaInicial.style.display = 'none';
+        }, 800);
 
-      const playPromise = musica.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          conteudoCentral.style.opacity = '1';
-          animateText();
-        }).catch(error => {
-          console.warn("Música bloqueada pelo navegador:", error);
-          conteudoCentral.style.opacity = '1';
-          animateText();
-        });
-      }
+        const playPromise = musica.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+            conteudoCentral.style.opacity = '1';
+            animateText();
+            }).catch(error => {
+            console.warn("Música bloqueada pelo navegador:", error);
+            conteudoCentral.style.opacity = '1';
+            animateText();
+            });
+        }
     }
 
     telaInicial.addEventListener('click', iniciarHomenagem);
