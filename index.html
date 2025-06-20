@@ -4,19 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Gislaine 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  
   <style>
+    /* === NOVAS VARIÁVEIS DE COR === */
+    :root {
+      --gold: #FFD700;
+      --soft-pink: #f2b5d4;
+      --dark-blue: #0b1d36;
+      --text-color: #f0f8ff; /* AliceBlue, um branco mais suave */
+    }
+
     body, html {
       margin: 0;
       padding: 0;
-      color: #fff;
-      font-family: 'Segoe UI', 'Comic Sans MS', cursive;
+      color: var(--text-color);
       overflow: hidden;
+      /* A COR DE FUNDO FOI REMOVIDA DAQUI PARA NÃO BLOQUEAR A IMAGEM */
+      position: relative;
+    }
+
+    /* === FUNDO ANIMADO DE ESTRELAS === */
+    #background-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* A COR DE FUNDO AGORA ESTÁ AQUI, COMO UM PLANO B */
+      background-color: var(--dark-blue);
       background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
+      z-index: -2;
     }
 
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #fff, 0 0 20px var(--gold);
+      animation: twinkle 5s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.5; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+    
+    /* === TELA INICIAL REFEITA === */
     #tela-inicial {
       position: fixed;
       top: 0;
@@ -30,21 +69,50 @@
       flex-direction: column;
       cursor: pointer;
       z-index: 100;
-      transition: opacity 0.5s ease-out;
+      transition: opacity 0.8s ease-out;
       text-align: center;
       padding: 1em;
     }
 
     #tela-inicial h1 {
-      font-size: 3em;
-      text-shadow: 0 0 10px #ff9ecf, 0 0 20px #ff78b2;
+      font-family: 'Great Vibes', cursive;
+      font-size: 4em;
+      color: var(--text-color);
+      text-shadow: 0 0 8px var(--soft-pink), 0 0 15px var(--gold), 0 0 25px var(--soft-pink);
+      margin-bottom: 20px;
     }
 
-    #tela-inicial p {
-      font-size: 1.2em;
-      opacity: 0.8;
+    #pulsing-heart {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      animation: pulseHeart 2s infinite;
+    }
+    #pulsing-heart::before,
+    #pulsing-heart::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 26px;
+      height: 42px;
+      background: var(--gold);
+      border-radius: 50px 50px 0 0;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+      box-shadow: 0 0 15px var(--gold);
+    }
+    #pulsing-heart::after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
+    
+    @keyframes pulseHeart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
     }
 
+    /* === CONTEÚDO PRINCIPAL ESTILIZADO === */
     #conteudo-central {
       display: flex;
       flex-direction: column;
@@ -53,136 +121,131 @@
       height: 100vh;
       text-align: center;
       padding: 1em;
-      background-color: rgba(0, 0, 0, 0.4);
+      background-color: rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(4px);
       opacity: 0;
-      transition: opacity 1.5s ease-in-out;
+      transition: opacity 2s ease-in-out;
     }
 
     #mensagem {
-      font-weight: 700;
-      font-size: 2.8em;
-      color: #fff;
-      text-shadow: 0 0 5px #fff, 0 0 15px #f9f871, 0 0 30px #f973c6;
-      margin-bottom: 30px;
-      animation: slideUp 1s ease-out forwards;
-      opacity: 0;
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      font-size: 4.5em;
+      color: var(--text-color);
+      text-shadow: 0 0 10px var(--gold), 0 0 20px var(--soft-pink), 0 0 35px var(--gold);
+      margin-bottom: 40px;
     }
 
     #imagens-container {
       display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      grid-template-rows: 1fr 2fr 1fr;
-      gap: 10px;
+      grid-template-columns: 1fr 1.8fr 1fr;
+      grid-template-rows: 1fr 1.8fr 1fr;
+      gap: 20px;
       width: 100%;
-      max-width: 500px;
-      margin: 0 auto 30px auto;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
       justify-items: center;
       align-items: center;
     }
 
+    /* ESTILO DA BORDA DOURADA/ROSA PULSANTE */
+    @keyframes borderPulse {
+      0% { border-color: var(--gold); box-shadow: 0 0 20px var(--soft-pink); }
+      50% { border-color: var(--soft-pink); box-shadow: 0 0 30px var(--gold); }
+      100% { border-color: var(--gold); box-shadow: 0 0 20px var(--soft-pink); }
+    }
+    
     .imagem-romantica {
       grid-column: 2;
       grid-row: 2;
       width: 100%;
-      height: 100%;
-      /* === ALTERAÇÕES PRINCIPAIS AQUI === */
-      object-fit: contain; /* Garante que a imagem apareça inteira, sem cortes */
-      max-width: 200px;    /* Largura máxima para a imagem */
-      max-height: 270px;   /* Altura máxima, adaptada para foto vertical */
-      /* ================================== */
+      height: auto; 
+      aspect-ratio: 285 / 400; 
+      object-fit: cover; 
+      max-width: 240px;
+      border: 4px double transparent;
       border-radius: 20px;
-      border: 3px solid #fff;
-      box-shadow: 0 0 20px rgba(255, 192, 203, 0.7);
-      opacity: 0; 
-      transform: scale(0.8); 
-      animation: scaleIn 1.2s ease forwards, pulseGlow 4s infinite 1.5s;
-      animation-delay: 0.5s; 
+      animation: scaleIn 1.2s ease 0.5s forwards, borderPulse 4s infinite 1.5s;
+      opacity: 0;
     }
 
     .imagem-pequena {
-      width: 85px;
-      height: 85px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
-      border-radius: 12px;
-      border: 2px solid #fff;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      border-radius: 50%; /* FOTOS MENORES AGORA SÃO CÍRCULOS */
+      border: 3px double transparent;
       opacity: 0;
       transform: scale(0.8);
-      animation: scaleIn 1.2s ease forwards;
+      animation: scaleIn 1.2s ease forwards, borderPulse 4s infinite 2s, float 6s ease-in-out infinite;
     }
     
-    .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; animation-delay: 0.8s; } 
-    .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; animation-delay: 1.0s; } 
-    .imagem-pequena:nth-of-type(3) { grid-column: 3; grid-row: 2; animation-delay: 1.2s; } 
-    .imagem-pequena:nth-of-type(4) { grid-column: 2; grid-row: 3; animation-delay: 1.4s; } 
-    .imagem-pequena:nth-of-type(5) { grid-column: 1; grid-row: 1; animation-delay: 1.6s; } 
-    .imagem-pequena:nth-of-type(6) { grid-column: 3; grid-row: 1; animation-delay: 1.8s; } 
-    .imagem-pequena:nth-of-type(7) { grid-column: 1; grid-row: 3; animation-delay: 2.0s; } 
-    .imagem-pequena:nth-of-type(8) { grid-column: 3; grid-row: 3; animation-delay: 2.2s; } 
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-10px) scale(1.05); }
+    }
+
+    /* Atrasos mantidos para aparição em cascata */
+    .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; animation-delay: 0.8s, 1s, 0.8s; } 
+    .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; animation-delay: 1.0s, 1.2s, 1s; } 
+    .imagem-pequena:nth-of-type(3) { grid-column: 3; grid-row: 2; animation-delay: 1.2s, 1.4s, 1.2s; } 
+    .imagem-pequena:nth-of-type(4) { grid-column: 2; grid-row: 3; animation-delay: 1.4s, 1.6s, 1.4s; } 
+    .imagem-pequena:nth-of-type(5) { grid-column: 1; grid-row: 1; animation-delay: 1.6s, 1.8s, 1.6s; } 
+    .imagem-pequena:nth-of-type(6) { grid-column: 3; grid-row: 1; animation-delay: 1.8s, 2s, 1.8s; } 
+    .imagem-pequena:nth-of-type(7) { grid-column: 1; grid-row: 3; animation-delay: 2.0s, 2.2s, 2s; } 
+    .imagem-pequena:nth-of-type(8) { grid-column: 3; grid-row: 3; animation-delay: 2.2s, 2.4s, 2.2s; } 
 
     .texto-final {
-      font-size: 1.2em;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5em;
+      font-weight: 700;
+      letter-spacing: 1px;
       animation: fadeIn 2s ease 3s forwards;
       opacity: 0;
     }
 
-    audio {
-      display: none;
-    }
-
+    audio { display: none; }
+    
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 25px #ffaddd; transform: scale(1); }
-      50% { box-shadow: 0 0 45px #ffaddd; transform: scale(1.05);}
-    }
 
+    /* === AJUSTES FINOS PARA CELULAR === */
     @media (max-width: 768px) {
-      #mensagem { font-size: 2em; }
-
-      .imagem-romantica {
-        /* === ALTERAÇÕES PARA CELULAR === */
-        max-width: 150px;  /* Largura máxima no celular */
-        max-height: 200px; /* Altura máxima no celular */
-        /* =============================== */
-        border-radius: 15px;
-      }
-
-      .imagem-pequena {
-        width: 65px;
-        height: 65px;
-      }
-
-      .texto-final { font-size: 1em; }
+      #tela-inicial h1 { font-size: 3em; }
+      #mensagem { font-size: 3em; margin-bottom: 20px; }
+      #imagens-container { max-width: 100%; gap: 10px; }
+      .imagem-romantica { max-width: 160px; border-width: 3px; }
+      .imagem-pequena { width: 65px; height: 65px; border-width: 2px; }
+      .texto-final { font-size: 1.2em; }
     }
   </style>
 </head>
 <body>
 
+<div id="background-wrapper">
+  </div>
+
 <div id="tela-inicial">
-  <h1>Para Gislaine 💖</h1>
-  <p>(Clique para começar a mágica)</p>
+  <h1>Para Gislaine</h1>
+  <div id="pulsing-heart"></div>
 </div>
 
 <div id="conteudo-central">
   <div id="mensagem"></div>
 
   <div id="imagens-container">
-    <img src="./homenaa/foto07.jpg" class="imagem-pequena" alt="Topo" />
-    <img src="./homenaa/foto2.jpg" class="imagem-pequena" alt="Esquerda" />
-    <img src="./homenaa/foto9.jpg" class="imagem-pequena" alt="Direita" />
-    <img src="./homenaa/foto08.jpg" class="imagem-pequena" alt="Baixo" />
-    <img src="./homenaa/foto10.jpg" class="imagem-pequena" alt="Topo Esquerda" />
-    <img src="./homenaa/foto1.jpg" class="imagem-pequena" alt="Topo Direita" />
-    <img src="./homenaa/foto4.jpg" class="imagem-pequena" alt="Inferior Esquerda" />
-    <img src="./homenaa/foto3.jpg" class="imagem-pequena" alt="Inferior Direita" />
-    
+    <img src="./homenaa/foto7.jpg" class="imagem-pequena" alt="Memória" />
+    <img src="./homenaa/foto2.jpg" class="imagem-pequena" alt="Memória" />
+    <img src="./homenaa/foto9.jpg" class="imagem-pequena" alt="Memória" />
+    <img src="./homenaa/foto8.jpg" class="imagem-pequena" alt="Memória" />
+    <img src="./homenaa/foto10.jpg" class="imagem-pequena" alt="Memória" />
+    <img src="./homenaa/foto1.jpg" class="imagem-pequena" alt="Memória" />
+    <img src="./homenaa/foto4.jpg" class="imagem-pequena" alt="Memória" />
+    <img src="./homenaa/foto3.jpg" class="imagem-pequena" alt="Memória" />
     <img src="./homenaa/foto6.jpg" class="imagem-romantica" alt="Casal" />
   </div>
 
-  <p class="texto-final">Cada momento com você é um verso da mais linda poesia. 🌙💫</p>
+  <p class="texto-final">Cada momento com você é um verso de poesia.</p>
 </div>
 
 <audio id="musica-fundo" loop preload="auto">
@@ -195,17 +258,31 @@
     const conteudoCentral = document.getElementById('conteudo-central');
     const musica = document.getElementById('musica-fundo');
     const mensagemElement = document.getElementById('mensagem');
+    const background = document.getElementById('background-wrapper');
 
-    const text = "Você é meu universo. ✨";
-    let displayedText = "";
+    // Gerador de Estrelas
+    const numStars = 100;
+    for (let i = 0; i < numStars; i++) {
+      let star = document.createElement('div');
+      star.className = 'star';
+      let size = Math.random() * 3;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 5 + 's';
+      star.style.animationDuration = Math.random() * 3 + 2 + 's';
+      background.appendChild(star);
+    }
+
+    const text = "Você é meu universo...";
     let index = 0;
 
     function animateText() {
       if (index < text.length) {
-        displayedText += text.charAt(index);
-        mensagemElement.textContent = displayedText;
+        mensagemElement.innerHTML += text.charAt(index);
         index++;
-        setTimeout(animateText, 120);
+        setTimeout(animateText, 150);
       }
     }
 
@@ -213,7 +290,7 @@
       telaInicial.style.opacity = '0';
       setTimeout(() => {
         telaInicial.style.display = 'none';
-      }, 500);
+      }, 800);
 
       const playPromise = musica.play();
       if (playPromise !== undefined) {
