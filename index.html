@@ -71,8 +71,9 @@
 
     #imagens-container {
       display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
-      grid-template-rows: 1fr 2fr 1fr;
+      /* Espaço vertical do meio aumentado para acomodar a imagem retrato */
+      grid-template-columns: 1fr 1.5fr 1fr;
+      grid-template-rows: 1fr 3fr 1fr;
       gap: 10px;
       width: 100%;
       max-width: 500px;
@@ -86,17 +87,18 @@
       grid-row: 2;
       width: 100%;
       height: 100%;
-      max-width: 220px;
-      max-height: 220px;
-      object-fit: cover;
-      border-radius: 20px;
+      /* Largura máxima para controlar o tamanho, sem limitar a altura */
+      max-width: 180px;
+      /* ALTERADO: contain mostra a imagem inteira sem cortar */
+      object-fit: contain;
+      border-radius: 15px; /* Raio ajustado para retrato */
       border: 3px solid #fff;
       box-shadow: 0 0 20px rgba(255, 192, 203, 0.7);
-      opacity: 0; /* Começa invisível para a animação funcionar */
-      transform: scale(0.10); /* Estado inicial para a animação scaleIn */
-      /* ANIMAÇÃO ALTERADA: Agora usa scaleIn para aparecer e pulseGlow começa depois */
+      opacity: 0; 
+      /* AJUSTADO: scale inicial para uma animação mais suave */
+      transform: scale(0.8); 
       animation: scaleIn 1.2s ease forwards, pulseGlow 4s infinite 1.5s;
-      animation-delay: 0.5s; /* A animação de entrada começa após 0.5s */
+      animation-delay: 0.5s;
     }
 
     .imagem-pequena {
@@ -110,16 +112,15 @@
       transform: scale(0.8);
       animation: scaleIn 1.2s ease forwards;
     }
-
-    /* Definições de posição e DELAY para aparecerem aos poucos (MANTIDO) */
-    .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; animation-delay: 0.8s; } /* Topo */
-    .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; animation-delay: 1.0s; } /* Esquerda */
-    .imagem-pequena:nth-of-type(3) { grid-column: 3; grid-row: 2; animation-delay: 1.2s; } /* Direita */
-    .imagem-pequena:nth-of-type(4) { grid-column: 2; grid-row: 3; animation-delay: 1.4s; } /* Baixo */
-    .imagem-pequena:nth-of-type(5) { grid-column: 1; grid-row: 1; animation-delay: 1.6s; } /* Topo-esquerda */
-    .imagem-pequena:nth-of-type(6) { grid-column: 3; grid-row: 1; animation-delay: 1.8s; } /* Topo-direita */
-    .imagem-pequena:nth-of-type(7) { grid-column: 1; grid-row: 3; animation-delay: 2.0s; } /* Inferior-esquerda */
-    .imagem-pequena:nth-of-type(8) { grid-column: 3; grid-row: 3; animation-delay: 2.2s; } /* Inferior-direita */
+    
+    .imagem-pequena:nth-of-type(1) { grid-column: 2; grid-row: 1; animation-delay: 0.8s; }
+    .imagem-pequena:nth-of-type(2) { grid-column: 1; grid-row: 2; animation-delay: 1.0s; }
+    .imagem-pequena:nth-of-type(3) { grid-column: 3; grid-row: 2; animation-delay: 1.2s; }
+    .imagem-pequena:nth-of-type(4) { grid-column: 2; grid-row: 3; animation-delay: 1.4s; }
+    .imagem-pequena:nth-of-type(5) { grid-column: 1; grid-row: 1; animation-delay: 1.6s; }
+    .imagem-pequena:nth-of-type(6) { grid-column: 3; grid-row: 1; animation-delay: 1.8s; }
+    .imagem-pequena:nth-of-type(7) { grid-column: 1; grid-row: 3; animation-delay: 2.0s; }
+    .imagem-pequena:nth-of-type(8) { grid-column: 3; grid-row: 3; animation-delay: 2.2s; }
 
     .texto-final {
       font-size: 1.2em;
@@ -143,9 +144,7 @@
       #mensagem { font-size: 2em; }
 
       .imagem-romantica {
-        max-width: 160px;
-        max-height: 160px;
-        border-radius: 15px;
+        max-width: 140px; /* Tamanho ajustado para mobile */
       }
 
       .imagem-pequena {
